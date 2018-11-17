@@ -1,15 +1,15 @@
 import { connect} from 'react-redux'
 import PictureOfDay from "../Components/PictureOfDay/PictureOfDay";
+import {fetchPictureOfDay} from "../actions";
 
 function mapStateToProps(state) {
     return {
-        count: state
+        pictureOfDay: state.pictureOfDay
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        loadNASAPictureOfDay: () => dispatch({type: 'INCREMENT'}),
-        decrement: () => dispatch({type: 'DECREMENT'})
+        loadNASAPictureOfDay: () => dispatch(fetchPictureOfDay()),
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PictureOfDay);

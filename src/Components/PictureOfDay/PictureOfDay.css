@@ -1,5 +1,4 @@
-.App {
-    height: 100vh;
+body{
     background: rgba(123,28,125,1);
     background: -moz-linear-gradient(left, rgba(123,28,125,1) 0%, rgba(46,27,111,1) 100%);
     background: -webkit-gradient(left top, right top, color-stop(0%, rgba(123,28,125,1)), color-stop(100%, rgba(46,27,111,1)));
@@ -8,4 +7,10 @@
     background: -ms-linear-gradient(left, rgba(123,28,125,1) 0%, rgba(46,27,111,1) 100%);
     background: linear-gradient(to right, rgba(123,28,125,1) 0%, rgba(46,27,111,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7b1c7d', endColorstr='#2e1b6f', GradientType=1 );
+
+    padding: 1em;
+}
+
+img{
+    margin: auto;
 }

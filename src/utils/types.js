@@ -1,0 +1,1 @@
+export const FETCH_PICTURE_OF_DAY = 'FETCH_PICTURE_OF_DAY';

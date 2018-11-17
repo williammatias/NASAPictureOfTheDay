@@ -1,10 +1,10 @@
-export const pictureOfDay = (state = 0, action) => {
-    switch(action.type) {
-        case 'INCREMENT':
-            return state = state + 1;
+import {FETCH_PICTURE_OF_DAY} from "../utils/types";
 
-        case 'DECREMENT':
-            return state = state -1;
+export const pictureOfDay = (state = {}, action) => {
+    switch(action.type) {
+        case 'FETCH_PICTURE_OF_DAY':
+            return state = action.value;
+
         default:
             return state;
     }

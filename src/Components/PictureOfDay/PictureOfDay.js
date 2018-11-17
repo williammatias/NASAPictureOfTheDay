@@ -8,13 +8,17 @@ class PictureOfDay extends Component {
 
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        this.props.loadNASAPictureOfDay();
     }
 
   render() {
     return (
       <div className="App">
-          <Particles />
+          <img src={this.props.pictureOfDay.hdurl} width={300} height={300}/>
+          <p>
+              {this.props.pictureOfDay.explanation}
+          </p>
+          {/*<Particles />*/}
       </div>
     );
   }
