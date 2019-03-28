@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+
 import moment from "moment";
+import fetch from "cross-fetch";
 
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -18,68 +20,66 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import "./PictureOfDay.css";
 
-class PictureOfDay extends Component {
-  constructor(props) {
-    super(props);
-    this.props.loadNASAPictureOfDay();
-  }
-  state = { expanded: false };
+export function PictureOfDay() {
+  const [pictureOfDay, setData] = useState({ pictureOfDay: {} });
+  useEffect(() => {
+    fetch(
+      `https://api.nasa.gov/planetary/apod?api_key=l2g7qnlNSUHY9D4tEu0JmVLOPsLY9ICb7uJOuZ2i`
+    )
+      .then(
+        response => {
+          return response.json();
+        },
+        error => console.log("An error occurred.", error)
+      )
+      .then(json => {
+        console.log(json);
+        setData(pictureOfDay: json);
+      });
+  });
 
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
+  // loadNASAPictureOfDay();
+  // state = { expanded: false };
 
-  render() {
-    return (
-      <div className="App">
-        <Card className="card">
-          <CardHeader
-            avatar={<Avatar aria-label="Recipe">R</Avatar>}
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={this.props.pictureOfDay.title}
-            subheader={moment(this.props.pictureOfDay.date).format(
-              "MMMM DD, YYYY"
-            )}
-          />
-          <CardMedia
-            image={this.props.pictureOfDay.url}
-            component="img"
-            alt={this.props.pictureOfDay.title}
-            title={this.props.pictureOfDay.title}
-          />
+  // handleExpandClick = () => {
+  //   this.setState(state => ({ expanded: !state.expanded }));
+  // };
+  return (
+    <div className="App">
+      <Card className="card">
+        <CardHeader
+          avatar={<Avatar aria-label="Recipe">R</Avatar>}
+          action={
+            <IconButton>
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={pictureOfDay.title}
+          subheader={moment(pictureOfDay.date).format("MMMM DD, YYYY")}
+        />
+        <CardMedia
+          image={pictureOfDay.url}
+          component="img"
+          alt={pictureOfDay.title}
+          title={pictureOfDay.title}
+        />
+        <CardContent>
+          <Typography component="p">{pictureOfDay.explanation}</Typography>
+        </CardContent>
+        <CardActions disableActionSpacing>
+          <IconButton aria-label="Add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="Share">
+            <ShareIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography component="p">
-              {this.props.pictureOfDay.explanation}
-            </Typography>
+            <Typography paragraph>{pictureOfDay.title}</Typography>
           </CardContent>
-          <CardActions disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="Share">
-              <ShareIcon />
-            </IconButton>
-            <IconButton
-              onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
-              aria-label="Show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph>{this.props.pictureOfDay.title}</Typography>
-            </CardContent>
-          </Collapse>
-        </Card>
-      </div>
-    );
-  }
+        </Collapse>
+      </Card>
+    </div>
+  );
 }
-
-export default PictureOfDay;

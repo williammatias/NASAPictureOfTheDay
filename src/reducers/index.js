@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
+import { pictureOfDayReducer } from "./pictureOfDay";
 
-import {pictureOfDay} from './pictureOfDay'
-
-
-export const reducers = combineReducers({
-    pictureOfDay
-});
+function reducers({ pictureOfDay }, action) {
+  console.log("action");
+  return {
+    pictureOfDay: pictureOfDayReducer(pictureOfDay, action)
+  };
+}
