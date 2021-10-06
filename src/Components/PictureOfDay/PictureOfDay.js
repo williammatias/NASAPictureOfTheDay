@@ -15,35 +15,32 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import "./PictureOfDay.css";
 
 export function PictureOfDay() {
-  const [pictureOfDay, setData] = useState({ pictureOfDay: {} });
-  useEffect(() => {
-    fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=l2g7qnlNSUHY9D4tEu0JmVLOPsLY9ICb7uJOuZ2i`
-    )
-      .then(
-        response => {
-          return response.json();
-        },
-        error => console.log("An error occurred.", error)
-      )
-      .then(json => {
-        console.log(json);
-        setData(pictureOfDay: json);
-      });
-  });
 
-  // loadNASAPictureOfDay();
-  // state = { expanded: false };
+    const [pictureOfDay, setPictureOfDay] = useState({ pictureOfDay: {} });
 
-  // handleExpandClick = () => {
-  //   this.setState(state => ({ expanded: !state.expanded }));
-  // };
+    useEffect(() => {
+      const url = "https://api.nasa.gov/planetary/apod?api_key=bNZH1n91ua9nUVCGhIkRlglgr6rFjdQowg1kYdtY";
+
+      const fetchData = async () => {
+          try {
+              const response = await fetch(url);
+              const json = await response.json();
+              console.log(json);
+              setPictureOfDay(json);
+          } catch (error) {
+              console.log("error", error);
+          }
+      };
+
+      fetchData();
+  }, []);
+
+
   return (
     <div className="App">
       <Card className="card">
@@ -59,6 +56,7 @@ export function PictureOfDay() {
         />
         <CardMedia
           image={pictureOfDay.url}
+          src={pictureOfDay.url}
           component="img"
           alt={pictureOfDay.title}
           title={pictureOfDay.title}

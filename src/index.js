@@ -1,12 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { StateProvider } from "./state";
-
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import { reducers } from "./reducers/index";
 
 import { PictureOfDay } from "./Components/PictureOfDay/PictureOfDay";
 
