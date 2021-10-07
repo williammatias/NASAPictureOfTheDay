@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React PictureOfDay](https://github.com/facebook/create-react-app).
+## Description
+
+This is a React Project that uses the NASA picture of the day API to show the information of that API.
+![NASA logo](https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg)
 
 ## Available Scripts
 

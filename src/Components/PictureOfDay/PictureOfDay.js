@@ -16,7 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-
+import { apiKey } from "../../api-key.json"
 import "./PictureOfDay.css";
 
 export function PictureOfDay() {
@@ -24,7 +24,7 @@ export function PictureOfDay() {
     const [pictureOfDay, setPictureOfDay] = useState({ pictureOfDay: {} });
 
     useEffect(() => {
-      const url = "https://api.nasa.gov/planetary/apod?api_key=bNZH1n91ua9nUVCGhIkRlglgr6rFjdQowg1kYdtY";
+      const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
 
       const fetchData = async () => {
           try {
